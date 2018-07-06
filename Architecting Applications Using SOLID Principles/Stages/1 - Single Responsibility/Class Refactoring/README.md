@@ -38,6 +38,6 @@ We've reached a good point for moving on to the next principle. Our app is on it
 
 ## What's Next?
 
-The next stage will be where we move some code into other classes within the same project.
+The next stage will be making our command arguments extendable and the command class more flexible.
 
-Stages/2 - Open Extension, Closed Modification/Command Factory
+Stages/2 - Open-Closed Principle/Command Arguments

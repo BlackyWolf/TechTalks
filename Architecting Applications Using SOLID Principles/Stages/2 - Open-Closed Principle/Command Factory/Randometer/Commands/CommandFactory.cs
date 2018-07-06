@@ -26,7 +26,7 @@ namespace Randometer.Commands
         {
             string commandName = GetCommandName(arguments);
 
-            Command command = commands.FirstOrDefault(x => x.Name == commandName)
+            Command command = commands.SingleOrDefault(x => x.Name == commandName)
                 ?? new EmptyCommand("empty");
 
             command.Arguments = arguments.ToArguments(commandName)?.ToArray();

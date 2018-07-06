@@ -18,10 +18,10 @@ We've broken the code into separate classes so each class can handle a different
 
 What if we want to add a new command, or add a new argument to a command? Do we have to go back into the classes and change the code to allow it? It might seem easy if it's the `CommandFactory` but what about that `NumberCommand` class? That thing is a mess. We need a way we can add or take away arguments from a command without having to change a command itself.
 
-What we're going to do first is change the current commands we have to allow extending arguments. This way we won't have to worry about adding new arguments in the future. We'll do this by using an abstract class.
+What we're going to do first is change the current commands we have to allow extending arguments. This way we won't have to worry about adding new arguments in the future. We'll do this by using an abstract class called ExecutionPlan which will be used to evaluate arguments passed to the command and determine if the match a certain set of rules. If the arguments match the ruleset then it uses that execution plan to run the command.
 
 ## What's Next?
 
-The next stage will be where we move some code into other classes within the same project.
+The next stage will be where we make the `CommandFactory` class extendable also.
 
-Stages/2 - Open Extension, Closed Modification/Command Factory
+Stages/2 - Open-Closed Principle/Command Factory

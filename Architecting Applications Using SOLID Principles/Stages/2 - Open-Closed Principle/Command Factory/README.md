@@ -12,16 +12,18 @@ The best way to learn this is through hands-on experience, so I encourage you to
 
 In this stage, we'll look at how we can make our app extendable without having to go back and modify the code for new features.
 
-### The Command Arguments
+### The Command Factory
 
-We've broken the code into separate classes so each class can handle a different responsibility, but now we've run into a problem.
+Now that the arguments are extendable for commands, why don't we go ahead and make the command factory extendable also?
 
-What if we want to add a new command, or add a new argument to a command? Do we have to go back into the classes and change the code to allow it? It might seem easy if it's the `CommandFactory` but what about that `NumberCommand` class? That thing is a mess. We need a way we can add or take away arguments from a command without having to change a command itself.
+However, in order to do this we need to change how arguments are passed to commands. Right now, they're passed in the constructor. While this has been working just fine, in hindsight it's inhibitive. Unlike the `ExecutionPlan` classes which are consistent, arguments can change per CLI request. As such, they don't need to be handled via the constructor and should either be set directly on the `Command.Arguments` property or passed into the `Command.Execute()` method. Let's go ahead and set them on the property.
 
-What we're going to do first is change the current commands we have to allow extending arguments. This way we won't have to worry about adding new arguments in the future. We'll do this by using an abstract class called `ExecutionPlan` which will be used to evaluate arguments passed to the command and determine if the match a certain set of rules. If the arguments match the ruleset then it uses that execution plan to run the command.
+Next, we'll change the commands to be passed into the `CommandFactory` via constructor injection and remove the switch case. Now, the factory only has to worry about finding commands from the array, setting the arguments, and returning the commands. It doesn't need to worry about constructing the commands and adding new switch cases.
+
+Then, we'll add a new method in the `Program` class that creates the factory and passes in the commands.
 
 ## What's Next?
 
-The next stage will be where we move some code into other classes within the same project.
+The next stage will be where we go through our project and make sure it follow Liskov's Substitution Principle.
 
 Stages/3 - Liskov's Substitution Principle
