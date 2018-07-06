@@ -4,7 +4,7 @@ Some stages will have multiple branches under it to show the path we took when r
 
 The best way to learn this is through hands-on experience, so I encourage you to try making your own application in whatever language you prefer while using the concepts within this project.
 
-## Stage 1 - The Principle of Single Responsibility
+## Stage 2 - The Open/Closed Principle
 
 > *Software entities should be open for extension, but closed for modification.*
 >
