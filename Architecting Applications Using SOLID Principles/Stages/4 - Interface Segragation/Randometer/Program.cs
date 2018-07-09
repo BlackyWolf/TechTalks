@@ -29,8 +29,8 @@ namespace Randometer
         }
 
         private static IFactory<string[], ICommand> CreateCommandFactory()
-        {
-            return new CommandFactory(
+            => new CommandFactory(
+                new CommandEvaluator(),
                 new Command(
                     "guid",
                     new Commands.Guid.HelpPlan(),
@@ -44,6 +44,5 @@ namespace Randometer
                     new Commands.Number.MinAndMaxPlan(),
                     new Commands.Number.MaxPlan(),
                     new Commands.Number.DefaultPlan()));
-        }
     }
 }

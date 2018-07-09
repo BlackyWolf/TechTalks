@@ -13,10 +13,14 @@ namespace Randometer.Commands
     /// </summary>
     public class CommandFactory : IFactory<string[], ICommand>
     {
+        private readonly IEvaluate<string[]> commandEvaluator;
         private readonly ICommand[] commands;
 
-        public CommandFactory(params ICommand[] commands)
-            => this.commands = commands ?? throw new ArgumentNullException(nameof(commands));
+        public CommandFactory(IEvaluate<string[]> commandEvaluator, params ICommand[] commands)
+        {
+            this.commandEvaluator = commandEvaluator ?? throw new ArgumentNullException(nameof(commandEvaluator));
+            this.commands = commands ?? throw new ArgumentNullException(nameof(commands));
+        }
 
         /// <summary>
         ///     Processes the passed arguments and execute the appropriate
@@ -48,7 +52,7 @@ namespace Randometer.Commands
         private string GetCommandName(string[] arguments)
         {
             // If no arguments given, go ahead and show the help information
-            if (arguments == null || arguments.Length == 0) return "help";
+            if (!commandEvaluator.Evaluate(arguments)) return "help";
 
             return arguments[0];
         }
