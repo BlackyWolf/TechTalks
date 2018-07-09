@@ -13,9 +13,9 @@ namespace Randometer.Commands
     /// </summary>
     public class CommandFactory : IFactory<string[], ICommand>
     {
-        private readonly Command[] commands;
+        private readonly ICommand[] commands;
 
-        public CommandFactory(params Command[] commands)
+        public CommandFactory(params ICommand[] commands)
             => this.commands = commands ?? throw new ArgumentNullException(nameof(commands));
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Randometer.Commands
             {
                 string commandName = GetCommandName(arguments);
 
-                Command command = commands.SingleOrDefault(x => x.Name == commandName)
+                ICommand command = commands.SingleOrDefault(x => x.Name == commandName)
                     ?? new EmptyCommand("empty");
 
                 command.Arguments = arguments.ToArguments(commandName)?.ToArray();

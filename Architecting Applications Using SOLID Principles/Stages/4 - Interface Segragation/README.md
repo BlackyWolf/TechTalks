@@ -14,7 +14,7 @@ In this stage, we'll go through the app and switch from using an abstract class 
 
 ### Making Interfaces Small
 
-Often times an interface
+Often times an interface may grow to be too large or start off
 
 ## What's Next?
 
