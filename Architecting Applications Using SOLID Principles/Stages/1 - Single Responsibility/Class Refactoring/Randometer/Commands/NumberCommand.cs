@@ -18,9 +18,11 @@ namespace Randometer.Commands
             if (arguments.Length == 2 && arguments[1] == "--help")
             {
                 PrintHelpDocs();
+
+                return;
             }
 
-            if (HasValidArguments(arguments)) return;
+            if (!HasValidArguments(arguments)) return;
 
             // Set the min and max nullable variables since we may have one, both,
             // or neither of them
